@@ -5,6 +5,14 @@ import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Search from '@/pages/Search'
+
+const originPush = VueRouter.prototype.push
+const originReplace = VueRouter.prototype.replace
+
+
+
+
+
 export default new VueRouter({
     routes: [
         {
@@ -30,8 +38,9 @@ export default new VueRouter({
         },
         {
             // 搜索
-            path: "/search",
+            path: "/search/:keyword?",
             component: Search,
+            name:"search",
         },
         {
             path: "/",
