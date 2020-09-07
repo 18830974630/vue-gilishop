@@ -9,7 +9,20 @@ import Search from '@/pages/Search'
 const originPush = VueRouter.prototype.push
 const originReplace = VueRouter.prototype.replace
 
-
+VueRouter.prototype.push = function (location, onResolved, onRejected) {
+    if (onResolved === undefined && onRejected === undefined) {
+        return originPush.call(this, location).catch(() => { })
+    } else {
+        return originPush.call(this, location, onResolved, onRejected)
+    }
+}
+VueRouter.prototype.push = function (location, onResolved, onRejected) {
+    if (onResolved === undefined && onRejected === undefined) {
+        return originReplace.call(this, location).catch(() => { })
+    } else {
+        return originReplace.call(this, location, onResolved, onRejected)
+    }
+}
 
 
 
@@ -25,7 +38,7 @@ export default new VueRouter({
             path: "/login",
             component: Login,
             meta: {
-                isHide:true
+                isHide: true
             },
         },
         {
@@ -33,18 +46,18 @@ export default new VueRouter({
             path: "/register",
             component: Register,
             meta: {
-                isHide:true
+                isHide: true
             },
         },
         {
             // 搜索
             path: "/search/:keyword?",
             component: Search,
-            name:"search",
+            name: "search",
         },
         {
             path: "/",
-            redirect:"/home",
+            redirect: "/home",
         },
     ]
 })
