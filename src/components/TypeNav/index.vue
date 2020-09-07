@@ -1694,6 +1694,14 @@
 <script>
 export default {
   name: "TypeNav",
+  mounted() {
+    this.getCategoryList()
+  },
+  methods: {
+    getCategoryList(){
+      this.$store.dispatch('getCategoryList');
+    }
+  },
 };
 </script>
 
