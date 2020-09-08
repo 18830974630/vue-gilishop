@@ -9,8 +9,8 @@ import TypeNav from '@/components/TypeNav'
 Vue.component('TypeNav', TypeNav)
 
 new Vue({
-  el:"#app",
-  render: h => h(App),
-  router,
-  store,
+    el: "#app",
+    render: h => h(App),
+    router,
+    store,
 })

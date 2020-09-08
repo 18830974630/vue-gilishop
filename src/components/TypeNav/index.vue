@@ -1695,14 +1695,14 @@
 export default {
   name: "TypeNav",
   mounted() {
-    this.getCategoryList()
+    this.getCategoryList();
   },
   methods: {
     getCategoryList(){
-      this.$store.dispatch('getCategoryList');
+      this.$store.dispatch('getCategorylist');
     }
   },
-};
+}
 </script>
 
 <style lang='less' scoped>

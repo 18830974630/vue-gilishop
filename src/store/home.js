@@ -4,21 +4,21 @@ const state = {
 }
 const mutations = {
     RECEIVECATEGORYLIST(state, categoryList) {
-        state.categoryList = categoryList;
+        state.categoryList = categoryList
     }
 }
 const actions = {
     async getCategoryList({ commit }) {
-        const result = await reqCategoryList();
-        if (result.code === 200) {
-            commit("RECEIVECATEGORYLIST", result.data)
+        const resule = await reqCategoryList()
+        if (resule.code === 200) {
+            commit("RECEIVECATEGORYLIST", resule.data);
         }
     }
 }
 const getters = {}
-export default {
+export default ({
     state,
     mutations,
     actions,
     getters,
-}
+})

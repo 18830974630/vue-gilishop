@@ -1,9 +1,8 @@
-import Ajak from '@/ajak/Ajak'
+import Ajax from '@/ajax/Ajax'
 
 export const reqCategoryList = () => {
-    return Ajak({
-        url: "/product/getBaseCategoryList",
-        method: "get",
+    return Ajax({
+        url: '/product/getBaseCategoryList',
+        method: 'get'
     })
 }
-

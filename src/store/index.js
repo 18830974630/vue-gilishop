@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex)
-
 import home from './home'
-
+Vue.use(Vuex);
 const state = {}
 const mutations = {}
 const actions = {}
