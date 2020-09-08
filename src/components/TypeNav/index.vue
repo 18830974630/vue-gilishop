@@ -13,17 +13,26 @@
               @mouseenter="moveIn(index)"
             >
               <h3>
-                <a href>{{c1.categoryName}}</a>
+                <router-link
+                  :to="{name:'search',query:{categoryName:c1.categoryName,category1id:c1.category1id }}"
+                >{{c1.categoryName}}</router-link>
+                <!-- <a href>{{c1.categoryName}}</a> -->
               </h3>
               <div class="item-list clearfix">
                 <div class="subitem">
                   <dl class="fore" v-for="(c2) in c1.categoryChild" :key="c2.categoryId">
                     <dt>
-                      <a href>{{c2.categoryName}}</a>
+                      <router-link
+                        :to="{name:'search',query:{categoryName:c2.categoryName,category1id:c2.category1id}}"
+                      >{{c2.categoryName}}</router-link>
+                      <!-- <a href>{{c2.categoryName}}</a> -->
                     </dt>
                     <dd>
                       <em v-for="(c3) in c2.categoryChild" :key="c3.categoryId">
-                        <a href>{{c3.categoryName}}</a>
+                        <router-link
+                          :to="{name:'search',query:{categoryName:c3.categoryName,}}"
+                        >{{c3.categoryName}}</router-link>
+                        <!-- <a href>{{c3.categoryName}}</a> -->
                       </em>
                     </dd>
                   </dl>
