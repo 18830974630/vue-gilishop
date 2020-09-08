@@ -17,12 +17,12 @@
               </h3>
               <div class="item-list clearfix">
                 <div class="subitem">
-                  <dl class="fore" v-for="(c2, index) in c1.categoryChild" :key="c2.categoryId">
+                  <dl class="fore" v-for="(c2) in c1.categoryChild" :key="c2.categoryId">
                     <dt>
                       <a href>{{c2.categoryName}}</a>
                     </dt>
                     <dd>
-                      <em v-for="(c3, index) in c2.categoryChild" :key="c3.categoryId">
+                      <em v-for="(c3) in c2.categoryChild" :key="c3.categoryId">
                         <a href>{{c3.categoryName}}</a>
                       </em>
                     </dd>
