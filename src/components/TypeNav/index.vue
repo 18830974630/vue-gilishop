@@ -1,7 +1,7 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <div>
+      <div @mouseleave="currentIndex = -1">
         <h2 class="all">全部商品分类</h2>
         <div class="sort">
           <div class="all-sort-list2" @click="toSearch">
@@ -89,7 +89,7 @@ export default {
       this.$store.dispatch("getCategoryList");
     },
     // moveIn(index) {
-    //   console.log(index);
+    //   // console.log(index);
     //   this.currentIndex = index;
     // },
     moveIn: throttle(
@@ -130,6 +130,7 @@ export default {
         location.query = query;
 
         this.$router.push(location);
+        this.currentIndex = -1;
       }
     },
   },
