@@ -7,14 +7,22 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 export default {
   name: "App",
-  components:{
+  components: {
     Header,
     Footer,
-  }
+  },
+  mounted() {
+    this.getCategoryList();
+  },
+  methods: {
+    getCategoryList() {
+      this.$store.dispatch("getCategoryList");
+    },
+  },
 };
 </script>
 

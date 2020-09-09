@@ -1,61 +1,63 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <div @mouseleave="currentIndex = -1">
+      <div @mouseleave="moveOutdiv" @mouseenter="moveIndiv">
         <h2 class="all">全部商品分类</h2>
-        <div class="sort">
-          <div class="all-sort-list2" @click="toSearch">
-            <div
-              class="item"
-              v-for="(c1, index) in categoryList"
-              :key="c1.categoryId"
-              :class="{item_on:currentIndex === index}"
-              @mouseenter="moveIn(index)"
-            >
-              <h3>
-                <!-- <router-link
+        <transition name="show">
+          <div class="sort" v-show="isShow">
+            <div class="all-sort-list2" @click="toSearch">
+              <div
+                class="item"
+                v-for="(c1, index) in categoryList"
+                :key="c1.categoryId"
+                :class="{item_on:currentIndex === index}"
+                @mouseenter="moveIn(index)"
+              >
+                <h3>
+                  <!-- <router-link
                   :to="{name:'search',query:{categoryName:c1.categoryName,category1id:c1.category1id }}"
-                >{{c1.categoryName}}</router-link>-->
-                <!-- <a href>{{c1.categoryName}}</a> -->
-                <a
-                  href="javascript:;"
-                  :data-categoryName="c1.categoryName"
-                  :data-category1Id="c1.categoryId"
-                >{{c1.categoryName}}</a>
-              </h3>
-              <div class="item-list clearfix">
-                <div class="subitem">
-                  <dl class="fore" v-for="(c2) in c1.categoryChild" :key="c2.categoryId">
-                    <dt>
-                      <!-- <router-link
-                        :to="{name:'search',query:{categoryName:c2.categoryName,category1id:c2.category1id}}"
-                      >{{c2.categoryName}}</router-link>-->
-                      <!-- <a href>{{c2.categoryName}}</a> -->
-                      <a
-                        href="javascript:;"
-                        :data-categoryName="c2.categoryName"
-                        :data-category2Id="c2.categoryId"
-                      >{{c2.categoryName}}</a>
-                    </dt>
-                    <dd>
-                      <em v-for="(c3) in c2.categoryChild" :key="c3.categoryId">
+                  >{{c1.categoryName}}</router-link>-->
+                  <!-- <a href>{{c1.categoryName}}</a> -->
+                  <a
+                    href="javascript:;"
+                    :data-categoryName="c1.categoryName"
+                    :data-category1Id="c1.categoryId"
+                  >{{c1.categoryName}}</a>
+                </h3>
+                <div class="item-list clearfix">
+                  <div class="subitem">
+                    <dl class="fore" v-for="(c2) in c1.categoryChild" :key="c2.categoryId">
+                      <dt>
                         <!-- <router-link
-                          :to="{name:'search',query:{categoryName:c3.categoryName,}}"
-                        >{{c3.categoryName}}</router-link>-->
-                        <!-- <a href>{{c3.categoryName}}</a> -->
+                        :to="{name:'search',query:{categoryName:c2.categoryName,category1id:c2.category1id}}"
+                        >{{c2.categoryName}}</router-link>-->
+                        <!-- <a href>{{c2.categoryName}}</a> -->
                         <a
                           href="javascript:;"
-                          :data-categoryName="c3.categoryName"
-                          :data-category3Id="c3.categoryId"
-                        >{{c3.categoryName}}</a>
-                      </em>
-                    </dd>
-                  </dl>
+                          :data-categoryName="c2.categoryName"
+                          :data-category2Id="c2.categoryId"
+                        >{{c2.categoryName}}</a>
+                      </dt>
+                      <dd>
+                        <em v-for="(c3) in c2.categoryChild" :key="c3.categoryId">
+                          <!-- <router-link
+                          :to="{name:'search',query:{categoryName:c3.categoryName,}}"
+                          >{{c3.categoryName}}</router-link>-->
+                          <!-- <a href>{{c3.categoryName}}</a> -->
+                          <a
+                            href="javascript:;"
+                            :data-categoryName="c3.categoryName"
+                            :data-category3Id="c3.categoryId"
+                          >{{c3.categoryName}}</a>
+                        </em>
+                      </dd>
+                    </dl>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </transition>
       </div>
       <nav class="nav">
         <a href="###">服装城</a>
@@ -72,22 +74,26 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters, mapMutations } from "vuex";
+import { mapState } from "vuex";
 import throttle from "lodash/throttle";
 export default {
   name: "TypeNav",
   data() {
     return {
       currentIndex: -1,
+      isShow: true,
     };
   },
   mounted() {
-    this.getCategoryList();
+    if (this.$route.path !== "/home") {
+      this.isShow = false;
+    }
+    // this.getCategoryList();
   },
   methods: {
-    getCategoryList() {
-      this.$store.dispatch("getCategoryList");
-    },
+    // getCategoryList() {
+    //   this.$store.dispatch("getCategoryList");
+    // },
     // moveIn(index) {
     //   // console.log(index);
     //   this.currentIndex = index;
@@ -131,6 +137,17 @@ export default {
 
         this.$router.push(location);
         this.currentIndex = -1;
+      }
+    },
+    moveIndiv() {
+      if (this.$route.path !== "/home") {
+        this.isShow = true;
+      }
+    },
+    moveOutdiv() {
+      this.currentIndex = -1;
+      if (this.$route.path !== "/home") {
+        this.isShow = false;
       }
     },
   },
@@ -180,8 +197,23 @@ export default {
       width: 210px;
       height: 461px;
       position: absolute;
-      background: #fafafa;
+      // background: #fafafa;
+      background: pink;
       z-index: 999;
+
+      &.show-enter{
+        opacity: 0;
+        height: 0;
+      }
+
+      &.show-enter-active{
+        transition: all 0.5s;
+      }
+
+      &.show-enter-to{
+        opacity: 1;
+        height: 461px;
+      }
 
       .all-sort-list2 {
         .item {
