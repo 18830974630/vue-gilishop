@@ -7,6 +7,8 @@ Vue.config.productionTip = false
 
 import TypeNav from '@/components/TypeNav'
 Vue.component('TypeNav', TypeNav)
+import SliderLoop from '@/components/SilderLoop'
+Vue.component('SliderLoop', SliderLoop)
 
 new Vue({
     el: "#app",

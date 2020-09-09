@@ -135,6 +135,11 @@ export default {
         //把query参数放到location当中
         location.query = query;
 
+        let { params } = this.$route;
+        if (params) {
+          location.params = params;
+        }
+
         this.$router.push(location);
         this.currentIndex = -1;
       }
@@ -201,16 +206,16 @@ export default {
       background: pink;
       z-index: 999;
 
-      &.show-enter{
+      &.show-enter {
         opacity: 0;
         height: 0;
       }
 
-      &.show-enter-active{
+      &.show-enter-active {
         transition: all 0.5s;
       }
 
-      &.show-enter-to{
+      &.show-enter-to {
         opacity: 1;
         height: 461px;
       }
