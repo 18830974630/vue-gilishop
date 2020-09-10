@@ -14,10 +14,6 @@
                 @mouseenter="moveIn(index)"
               >
                 <h3>
-                  <!-- <router-link
-                  :to="{name:'search',query:{categoryName:c1.categoryName,category1id:c1.category1id }}"
-                  >{{c1.categoryName}}</router-link>-->
-                  <!-- <a href>{{c1.categoryName}}</a> -->
                   <a
                     href="javascript:;"
                     :data-categoryName="c1.categoryName"
@@ -28,10 +24,6 @@
                   <div class="subitem">
                     <dl class="fore" v-for="(c2) in c1.categoryChild" :key="c2.categoryId">
                       <dt>
-                        <!-- <router-link
-                        :to="{name:'search',query:{categoryName:c2.categoryName,category1id:c2.category1id}}"
-                        >{{c2.categoryName}}</router-link>-->
-                        <!-- <a href>{{c2.categoryName}}</a> -->
                         <a
                           href="javascript:;"
                           :data-categoryName="c2.categoryName"
@@ -40,10 +32,6 @@
                       </dt>
                       <dd>
                         <em v-for="(c3) in c2.categoryChild" :key="c3.categoryId">
-                          <!-- <router-link
-                          :to="{name:'search',query:{categoryName:c3.categoryName,}}"
-                          >{{c3.categoryName}}</router-link>-->
-                          <!-- <a href>{{c3.categoryName}}</a> -->
                           <a
                             href="javascript:;"
                             :data-categoryName="c3.categoryName"
@@ -88,16 +76,8 @@ export default {
     if (this.$route.path !== "/home") {
       this.isShow = false;
     }
-    // this.getCategoryList();
   },
   methods: {
-    // getCategoryList() {
-    //   this.$store.dispatch("getCategoryList");
-    // },
-    // moveIn(index) {
-    //   // console.log(index);
-    //   this.currentIndex = index;
-    // },
     moveIn: throttle(
       function (index) {
         // console.log(index);
@@ -114,14 +94,9 @@ export default {
       let { categoryname, category1id, category2id, category3id } = data;
 
       if (categoryname) {
-        //如果categoryname是存在的代表点的一定是a
-
-        //既然点的是a 那么一定会跳转，所以我们创建跳转的对象
         let location = {
           name: "search",
         };
-
-        //创建query参数的对象，来收集整理query参数
         let query = {
           categoryName: categoryname,
         };
