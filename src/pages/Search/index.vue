@@ -53,7 +53,7 @@
           </div>
           <div class="goods-list">
             <ul class="yui3-g">
-              <li class="yui3-u-1-5" v-for="(goods,index) in goodsList" :key="goods.id">
+              <li class="yui3-u-1-5" v-for="(goods) in goodsList" :key="goods.id">
                 <div class="list-wrap">
                   <div class="p-img">
                     <a href="item.html" target="_blank">
@@ -205,7 +205,7 @@ export default {
   watch: {
     $route: {
       handler(newVal, oldVal) {
-        this.handlerSearchParams()
+        this.handlerSearchParams();
         this.getGoodsListInfo();
       },
     },
