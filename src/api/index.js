@@ -18,6 +18,14 @@ export const reqBannerList = () => {
 export const reqFloorList = () => {
     return mockAjak({
         url: '/floor',
-        method:'get',
+        method: 'get',
+    })
+}
+
+export const reqGoodsListInfo = (searchParams) => {
+    return Ajax({
+        url: '/list',
+        method: 'post',
+        data: searchParams,
     })
 }
