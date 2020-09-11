@@ -60,8 +60,12 @@ export default {
       // this.$router.push({name:"search",params:{keyword:this.keyword}});
       // this.$router.push({name:"search",params:{keyword:this.keyword || undefined}});
       let location = {
-        name:"search",
-        params:{keyword:this.keyword || undefined}
+        name: "search",
+        params: { keyword: this.keyword || undefined },
+      };
+      let { query } = this.$route;
+      if (query) {
+        location.query = query;
       }
       this.$router.push(location);
       this.keyword = "";

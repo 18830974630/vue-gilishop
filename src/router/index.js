@@ -16,7 +16,7 @@ VueRouter.prototype.push = function (location, onResolved, onRejected) {
         return originPush.call(this, location, onResolved, onRejected)
     }
 }
-VueRouter.prototype.push = function (location, onResolved, onRejected) {
+VueRouter.prototype.replace = function (location, onResolved, onRejected) {
     if (onResolved === undefined && onRejected === undefined) {
         return originReplace.call(this, location).catch(() => { })
     } else {

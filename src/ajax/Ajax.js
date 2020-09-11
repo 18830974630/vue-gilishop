@@ -16,7 +16,7 @@ instance.interceptors.response.use(function(response) {
     return response.data;
 }, function(error) {
     NProgress.done();
-    alert("请求发送失败" + error.messoge || "未知错误");
+    alert("请求发送失败" + error.message || "未知错误");
     return new Promise(() => {});
 });
 
