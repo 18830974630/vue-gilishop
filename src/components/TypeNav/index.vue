@@ -1,7 +1,7 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <div @mouseleave="moveOutdiv" @mouseenter="moveIndiv">
+      <div @mouseleave="moveOutdiv" @mouseenter="moveIndiv" @click="hide">
         <h2 class="all">全部商品分类</h2>
         <transition name="show">
           <div class="sort" v-show="isShow">
@@ -130,7 +130,13 @@ export default {
         this.isShow = false;
       }
     },
+    hide() {
+      if (this.$route.path !== "/home") {
+        this.isShow = false;
+      }
+    },
   },
+
   computed: {
     ...mapState({
       categoryList: (state) => state.home.categoryList,

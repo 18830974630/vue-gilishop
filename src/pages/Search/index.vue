@@ -70,8 +70,8 @@
                   </div>
                   <div class="price">
                     <strong>
-                      <em>¥</em>
-                      <i>6088.00</i>
+                      <em>¥ </em>
+                      <i>{{goods.price}}</i>
                     </strong>
                   </div>
                   <div class="attr">
@@ -84,7 +84,7 @@
                   <div class="commit">
                     <i class="command">
                       已有
-                      <span>2000</span>人评价
+                      <span>{{goods.hotScore}}</span>人评价
                     </i>
                   </div>
                   <div class="operate">
