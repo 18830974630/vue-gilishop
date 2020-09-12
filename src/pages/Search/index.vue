@@ -19,11 +19,19 @@
               {{searchParams.keyword}}
               <i @click="removeKeyword">×</i>
             </li>
+            <li class="with-x" v-if="searchParams.trademark">
+              {{searchParams.trademark.split(':')[1]}}
+              <i @click="removeTrademark">×</i>
+            </li>
+            <li class="with-x" v-for="(porp, index) in searchParams.props" :key="index">
+              {{porp.split(':')[1]}}
+              <i @click="removeProp(index)">×</i>
+            </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector />
+        <SearchSelector @searchForTrademark="searchForTrademark" @searchForProps="searchForProps"></SearchSelector>
 
         <!--details-->
         <div class="details clearfix">
@@ -194,6 +202,25 @@ export default {
     removeKeyword() {
       this.searchParams.keyword = undefined;
       this.$router.push({ name: "search", query: this.$route.query });
+    },
+    searchForTrademark(trademark) {
+      this.searchParams.trademark = `${trademark.tmId}:${trademark.tmName}`;
+      this.getGoodsListInfo();
+    },
+    removeTrademark() {
+      this.searchParams.trademark = undefined;
+      this.getGoodsListInfo();
+    },
+    searchForProps(attr, attrValue) {
+      let porp = `${attr.attrId}:${attrValue}:${attr.attrName}`;
+      let repeat = this.searchParams.props.some((item) => item === porp);
+      if (repeat) return;
+      this.searchParams.props.push(porp);
+      this.getGoodsListInfo();
+    },
+    removeProp(index) {
+      this.searchParams.props.splice(index, 1);
+      this.getGoodsListInfo();
     },
   },
   components: {

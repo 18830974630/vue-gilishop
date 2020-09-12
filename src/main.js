@@ -9,10 +9,12 @@ import TypeNav from '@/components/TypeNav'
 Vue.component('TypeNav', TypeNav)
 import SliderLoop from '@/components/SilderLoop'
 Vue.component('SliderLoop', SliderLoop)
-
 new Vue({
     el: "#app",
     render: h => h(App),
+    beforeCreate() {
+        Vue.prototype.$bus = this;
+    },
     router,
     store,
 })
