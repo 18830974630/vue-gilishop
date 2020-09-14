@@ -86,9 +86,7 @@
                     </strong>
                   </div>
                   <div class="attr">
-                    <router-link :to="'/detail/'+goods.id">
-                      {{goods.title}}
-                    </router-link>
+                    <router-link :to="'/detail/'+goods.id">{{goods.title}}</router-link>
                   </div>
                   <div class="commit">
                     <i class="command">
@@ -115,6 +113,12 @@
             :continueNum="5"
             @changePageNum="changePageNum"
           ></Pagination>
+          <!-- 
+            currentPageNum  当前页码
+            pageSize        每页个数
+            total           总个数
+            continueNum     连续页数
+          -->
         </div>
       </div>
     </div>
