@@ -9,6 +9,8 @@ import TypeNav from '@/components/TypeNav'
 Vue.component('TypeNav', TypeNav)
 import SliderLoop from '@/components/SilderLoop'
 Vue.component('SliderLoop', SliderLoop)
+import Pagination from '@/components/Pagination'
+Vue.component('Pagination',Pagination)
 new Vue({
     el: "#app",
     render: h => h(App),
