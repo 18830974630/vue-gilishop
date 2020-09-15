@@ -65,12 +65,12 @@
           <div class="choose">
             <div class="chooseArea">
               <div class="choosed"></div>
-              <dl v-for="(spuSaleAttr,index) in spuSaleAttrList" :key="spuSaleAttr.id">
+              <dl v-for="(spuSaleAttr) in spuSaleAttrList" :key="spuSaleAttr.id">
                 <dt class="title">{{spuSaleAttr.saleAttrName}}</dt>
                 <dd
                   changepirce="0"
                   :class="{active:spuSaleAttrValue.isChecked === '1'}"
-                  v-for="(spuSaleAttrValue,index) in spuSaleAttr.spuSaleAttrValueList"
+                  v-for="(spuSaleAttrValue) in spuSaleAttr.spuSaleAttrValueList"
                   :key="spuSaleAttrValue.id"
                   @click="changeIsChecked(spuSaleAttrValue,spuSaleAttr.spuSaleAttrValueList)"
                 >{{spuSaleAttrValue.saleAttrValueName}}</dd>
