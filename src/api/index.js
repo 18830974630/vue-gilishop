@@ -43,3 +43,10 @@ export const reqAddOrUpdateShopCart = (skuId, skuNum) => {
         method: 'post'
     })
 }
+
+export const reqShopCartList = () => {
+    return Ajax({
+        url: '/cart/cartList',
+        method: 'get'
+    })
+}
