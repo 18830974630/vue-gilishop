@@ -50,3 +50,17 @@ export const reqShopCartList = () => {
         method: 'get'
     })
 }
+export const reqUpdateCartIsChecked = (skuId, isChecked) => {
+    return Ajax({
+        url: `/cart/checkCart/${skuId}/${isChecked}`,
+        method: 'get'
+    })
+}
+
+//请求删除购物车  /api/cart/deleteCart/{skuId}  delete
+export const reqDeleteCart = (skuId) => {
+    return Ajax({
+        url: `/cart/deleteCart/${skuId}`,
+        method: 'delete'
+    })
+}
