@@ -1,5 +1,4 @@
 import { reqAddOrUpdateShopCart, reqShopCartList, reqUpdateCartIsChecked, reqDeleteCart } from '@/api'
-import { Promise } from 'core-js';
 //存数据的地方，多个属性的对象
 const state = {
     shopCartList: []
