@@ -29,7 +29,7 @@
               <div class="priceArea1">
                 <div class="title">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</div>
                 <div class="price">
-                  <i>¥</i>
+                  <i>¥ </i>
                   <em>{{skuInfo.price}}</em>
                   <span>降价通知</span>
                 </div>

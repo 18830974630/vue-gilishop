@@ -12,23 +12,27 @@
       </h3>
       <div class="content">
         <label>手机号:</label>
-        <input type="text" placeholder="请输入你的手机号" />
+        <input type="text" placeholder="请输入你的手机号" v-model="mobile" />
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
         <label>验证码:</label>
-        <input type="text" placeholder="请输入验证码" />
-        <img ref="code" src="http://182.92.128.115/api/user/passport/code" alt="code" />
+        <input type="text" placeholder="请输入验证码" v-model="code" />
+
+        <!-- <img ref="code" src="http://182.92.128.115/api/user/passport/code" alt="code" /> -->
+
+        <img ref="code" src="/api/user/passport/code" alt="code" @click="changeCode" />
+
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
         <label>登录密码:</label>
-        <input type="text" placeholder="请输入你的登录密码" />
+        <input type="text" placeholder="请输入你的登录密码" v-model="password" />
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="content">
         <label>确认密码:</label>
-        <input type="text" placeholder="请输入确认密码" />
+        <input type="text" placeholder="请输入确认密码" v-model="password2" />
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="controls">
@@ -37,7 +41,7 @@
         <span class="error-msg">错误提示信息</span>
       </div>
       <div class="btn">
-        <button>完成注册</button>
+        <button @click="register">完成注册</button>
       </div>
     </div>
 
@@ -62,6 +66,35 @@
 <script>
 export default {
   name: "Register",
+  data() {
+    return {
+      mobile: "",
+      password: "",
+      password2: "",
+      code: "",
+    };
+  },
+  methods: {
+    changeCode() {
+      this.$refs.code.src = "/api/user/passport/code";
+    },
+    async register() {
+      let { mobile, password, password2, code } = this;
+      if (mobile && password && password2 && code && password === password2) {
+        try {
+          await this.$store.dispatch("userRegister", {
+            mobile,
+            password,
+            code,
+          });
+          alert("注册成功");
+          this.$router.push("/login");
+        } catch (error) {
+          alert("注册失败" + error.message);
+        }
+      }
+    },
+  },
 };
 </script>
 

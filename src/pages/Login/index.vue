@@ -17,11 +17,11 @@
             <form action="##">
               <div class="input-text clearFix">
                 <span></span>
-                <input type="text" placeholder="邮箱/用户名/手机号" />
+                <input type="text" placeholder="邮箱/用户名/手机号" v-model="mobile" />
               </div>
               <div class="input-text clearFix">
                 <span class="pwd"></span>
-                <input type="text" placeholder="请输入密码" />
+                <input type="text" placeholder="请输入密码" v-model="password" />
               </div>
               <div class="setting clearFix">
                 <label class="checkbox inline">
@@ -30,7 +30,7 @@
                 </label>
                 <span class="forget">忘记密码？</span>
               </div>
-              <button class="btn">登&nbsp;&nbsp;录</button>
+              <button class="btn" @click.prevent="login">登&nbsp;&nbsp;录</button>
             </form>
 
             <div class="call clearFix">
@@ -75,6 +75,26 @@
 <script>
 export default {
   name: "Login",
+  data() {
+    return {
+      mobile: "",
+      password: "",
+    };
+  },
+  methods: {
+    async login() {
+      let { mobile, password } = this;
+      if (mobile && password) {
+        try {
+          await this.$store.dispatch("userLogin", { mobile, password });
+          alert("登陆成功");
+          this.$router.push("/");
+        } catch (error) {
+          alert("登陆失败" + error.message);
+        }
+      }
+    },
+  },
 };
 </script>
 
@@ -149,7 +169,7 @@ export default {
               width: 37px;
               height: 32px;
               border: 1px solid #ccc;
-              background: url(./images/icons.png) no-repeat -10px -201px;
+              background: url(../../assets/images/icons.png) no-repeat -10px -201px;
               box-sizing: border-box;
               border-radius: 2px 0 0 2px;
             }
