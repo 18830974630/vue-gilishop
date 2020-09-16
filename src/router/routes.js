@@ -7,14 +7,17 @@ import AddCartSuccess from '@/pages/AddCartSuccess'
 import ShopCart from '@/pages/ShopCart'
 export default [
     {
+        // 购物车
         path: '/shopcart',
         component: ShopCart
     },
     {
+        // 加入购物车
         path: '/addcartsuccess',
         component: AddCartSuccess
     },
     {
+        // 商品详情页
         path: '/detail/:goodsId',
         component: Detail
     },

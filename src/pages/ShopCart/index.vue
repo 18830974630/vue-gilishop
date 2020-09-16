@@ -116,16 +116,20 @@ export default {
     },
     async deleteCart(cart) {
       try {
-        const result = await this.$store.dispatch("deleteCart", cart.skuId);
-        this.getShopCartList();
+        if (window.confirm("您确定要删除这件商品吗?")) {
+          const result = await this.$store.dispatch("deleteCart", cart.skuId);
+          this.getShopCartList();
+        }
       } catch (error) {
         alert("删除失败" + error.message);
       }
     },
     async deleteAllCart() {
       try {
-        const result = await this.$store.dispatch('deleteAllCart');
-        this.getShopCartList();
+        if (window.confirm("您确定要删除这些商品吗?")) {
+          const result = await this.$store.dispatch("deleteAllCart");
+          this.getShopCartList();
+        }
       } catch (error) {
         alert("全部删除失败" + error.message);
       }
