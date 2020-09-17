@@ -21,7 +21,6 @@ const actions = {
         // console.log(111)
         const result = await reqUserRegister(userInfo);
         if (result.code === 200) {
-            // commit('RECEIVEUSERINFO',result.data)
             return 'ok'
         } else {
             return Promise.reject(new Error('faild'))

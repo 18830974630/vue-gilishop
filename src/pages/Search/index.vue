@@ -63,7 +63,7 @@
                     <i
                       v-if="sortFlag === '2'"
                       class="iconfont"
-                      :class="{iconup:sortType==='asc',iconup:sortType==='desc'}"
+                      :class="{iconup:sortType==='asc',iconDown:sortType==='desc'}"
                     ></i>
                   </a>
                 </li>
@@ -144,7 +144,7 @@ export default {
         //代表的是用户发送请求默认的参数  默认获取第几页  默认排序规则是什么  默认每页个数
         order: "1:desc",
         pageNo: 1,
-        pageSize: 2,
+        pageSize: 10,
       },
     };
   },

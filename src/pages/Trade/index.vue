@@ -131,10 +131,12 @@ export default {
 
       let result = await this.$Api.reqSubmitOrder(tradeNo, tradeInfo);
       if (result.code === 200) {
+        // orderId 储存订单编号（可存可不存）
         this.orderId = result.data;
         this.$router.push("/pay?orderId=" + result.data);
       }
     },
+
   },
   computed: {
     ...mapGetters(["detailArrayList", "userAddressList"]),
