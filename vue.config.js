@@ -4,7 +4,6 @@ module.exports = {
     lintOnSave: false,
     // 代理 
     devServer: {
-        port: 9000,
         proxy: {
             "/api": {
                 target: "http://182.92.128.115",
