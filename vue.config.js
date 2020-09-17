@@ -4,6 +4,7 @@ module.exports = {
     lintOnSave: false,
     // 代理 
     devServer: {
+        // disableHostCheck: true,
         proxy: {
             "/api": {
                 target: "http://182.92.128.115",
