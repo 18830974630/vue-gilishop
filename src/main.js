@@ -11,6 +11,12 @@ import SliderLoop from '@/components/SilderLoop'
 Vue.component('SliderLoop', SliderLoop)
 import Pagination from '@/components/Pagination'
 import * as API from '@/api'
+
+import { MessageBox, Message } from 'element-ui';
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$message = Message;
+
 Vue.component('Pagination', Pagination)
 new Vue({
     el: "#app",

@@ -105,7 +105,8 @@
         <div class="hr"></div>
 
         <div class="submit">
-          <router-link class="btn" to="/paysuccess">立即支付</router-link>
+          <a href="javascript:;" class="btn" @click="open">立即支付</a>
+          <!-- <router-link class="btn" to="/paysuccess">立即支付</router-link> -->
         </div>
         <div class="otherpay">
           <div class="step-tit">
@@ -124,6 +125,7 @@
 </template>
 
 <script>
+import QRCode from "qrcode";
 export default {
   name: "Pay",
   data() {
@@ -140,6 +142,21 @@ export default {
       const result = await this.$Api.reqPayInfo(this.$route.query.orderId);
       if (result.code === 200) {
         this.orderInfo = result.data;
+      }
+    },
+    async open() {
+      try {
+        let imgUrl = await QRCode.toDataURL(this.orderInfo.codeUrl);
+        this.$alert(`<img src=${imgUrl}>`, "请使用微信扫码支付", {
+          dangerouslyUseHTMLString: true,
+          showCancelButton: true,
+          cancelButtonText: "支付遇到问题",
+          confirmButtonText: "我已成功支付",
+          showClose: false,
+          center: true,
+        });
+      } catch (error) {
+        this.$message.error("生成二维码失败");
       }
     },
   },
