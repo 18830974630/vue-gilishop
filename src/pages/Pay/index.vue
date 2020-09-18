@@ -131,6 +131,7 @@ export default {
   data() {
     return {
       orderInfo: {},
+      orderStatus: 0,
     };
   },
   mounted() {
@@ -154,7 +155,40 @@ export default {
           confirmButtonText: "我已成功支付",
           showClose: false,
           center: true,
-        });
+          beforeClose: (action, instance, done) => {
+            if (action === "confirm") {
+              // 正常
+              // if (this.orderStatus !== 200) {
+              //   this.$message.info("请确保支付成功");
+              // }
+
+              // 后门
+              clearInterval(this.timer);
+              this.timer = null;
+              done();
+              this.$router.push("/paysuccess");
+            } else if (action === "cancel") {
+              this.$message.success("请联系尚硅谷前台小姐姐");
+              clearInterval(this.timer);
+              this.timer = null;
+              done();
+            }
+          },
+        })
+          .then(() => {})
+          .catch(() => {});
+        if (!this.timer) {
+          this.timer = setInterval(async () => {
+            const result = await this.$Api.reqPayStatus(this.orderInfo.orderId);
+            if (result.code === 200) {
+              this.orderStatus = result.code;
+              clearInterval(this.timer);
+              this.timer = null;
+              this.$msgbox.close();
+              this.$router.push("/paysuccess");
+            }
+          }, 2000);
+        }
       } catch (error) {
         this.$message.error("生成二维码失败");
       }
