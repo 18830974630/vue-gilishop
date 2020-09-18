@@ -129,3 +129,12 @@ export const reqPayStatus = (orderId) => {
         method: "get"
     })
 }
+
+
+// /api/order/auth/{page}/{limit}   get   请求订单列表
+export const reqOrderInfo = (page, limit) => {
+    return Ajax({
+        url: `/order/auth/${page}/${limit}`,
+        method: "get"
+    })
+}

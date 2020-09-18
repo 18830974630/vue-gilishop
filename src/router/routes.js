@@ -9,10 +9,26 @@ import Trade from '@/pages/Trade'
 import Pay from '@/pages/Pay'
 import PaySuccess from '@/pages/PaySuccess'
 import Center from '@/pages/Center'
+import GroupOrder from '@/pages/Center/GroupOrder'
+import MyOrder from '@/pages/Center/MyOrder'
 export default [
     {
         path: '/center',
-        component: Center
+        component: Center,
+        children: [
+            {
+                path: "grouporder",
+                component: GroupOrder
+            },
+            {
+                path: "myorder",
+                component: MyOrder
+            },
+            {
+                path: "",
+                redirect: "myorder"
+            }
+        ]
     },
     {
         path: '/trade',

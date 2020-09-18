@@ -106,13 +106,13 @@
               </li>
             </ul>
           </div>
-          <Pagination
+          <Pagination2
             :currentPageNum="searchParams.pageNo"
             :pageSize="searchParams.pageSize"
             :total="goodsListInfo.total"
             :continueNum="5"
             @changePageNum="changePageNum"
-          ></Pagination>
+          ></Pagination2>
           <!-- 
             currentPageNum  当前页码
             pageSize        每页个数
