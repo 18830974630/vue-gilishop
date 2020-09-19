@@ -44,17 +44,21 @@
                 </div>
               </td>
               <template v-if="index === 0">
-                <td rowspan="2" width="8%" class="center">{{order.consignee}}</td>
-                <td rowspan="2" width="13%" class="center">
+                <td
+                  :rowspan="order.orderDetailList.length"
+                  width="8%"
+                  class="center"
+                >{{order.consignee}}</td>
+                <td :rowspan="order.orderDetailList.length" width="13%" class="center">
                   <ul class="unstyled">
                     <li>总金额¥{{order.totalAmount}}</li>
                     <li>{{order.paymentWay === 'ONLINE'?'在线支付':'货到付款'}}</li>
                   </ul>
                 </td>
-                <td rowspan="2" width="8%" class="center">
+                <td :rowspan="order.orderDetailList.length" width="8%" class="center">
                   <a href="#" class="btn">{{order.orderStatusName}}</a>
                 </td>
-                <td rowspan="2" width="13%" class="center">
+                <td :rowspan="order.orderDetailList.length" width="13%" class="center">
                   <ul class="unstyled">
                     <li>
                       <a href="mycomment.html" target="_blank">评价|晒单</a>
@@ -79,7 +83,6 @@
         :current-page="page"
         :pager-count="7"
         @current-change="getOrder"
-
         @size-change="handleCurrentChange"
         :page-sizes="[3, 5, 7, 10]"
         layout="prev, pager, next, jumper, ->, sizes, total"
