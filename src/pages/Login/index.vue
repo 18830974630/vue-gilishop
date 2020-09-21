@@ -75,6 +75,19 @@
 <script>
 export default {
   name: "Login",
+  // beforeRouteEnter(to, from, next) {
+  //   // 在渲染该组件的对应路由被 confirm 前调用
+  //   // 不！能！获取组件实例 `this`
+  //   // 因为当守卫执行前，组件实例还没被创建
+  //   next((vm) => {
+  //     // 通过 `vm` 访问组件实例
+  //     if (vm.$store.state.user.userInfo.name) {
+  //       next("/");
+  //     } else {
+  //       next();
+  //     }
+  //   });
+  // },
   data() {
     return {
       mobile: "",
@@ -88,7 +101,12 @@ export default {
         try {
           await this.$store.dispatch("userLogin", { mobile, password });
           alert("登陆成功");
-          this.$router.push("/");
+          let redirect = this.$route.query.redirect;
+          if (redirect) {
+            this.$router.push(redirect);
+          } else {
+            this.$router.push("/");
+          }
         } catch (error) {
           alert("登陆失败" + error.message);
         }
