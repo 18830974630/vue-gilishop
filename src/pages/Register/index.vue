@@ -17,11 +17,11 @@
           placeholder="请输入你的手机号"
           type="text"
           name="phone"
-          v-validate="{required: true,regex: /^1\d{10}$/}"
-          :class="{invalid: errors.has('phone')}"
+          v-validate="{ required: true, regex: /^1\d{10}$/ }"
+          :class="{ invalid: errors.has('phone') }"
         />
 
-        <span class="error-msg">{{ errors.first('phone') }}</span>
+        <span class="error-msg">{{ errors.first("phone") }}</span>
       </div>
       <div class="content">
         <label>验证码:</label>
@@ -30,11 +30,16 @@
           placeholder="请输入验证码"
           type="text"
           name="code"
-          v-validate="{required: true,regex: /^\d{4}$/}"
-          :class="{invalid: errors.has('code')}"
+          v-validate="{ required: true, regex: /^\d{4}$/ }"
+          :class="{ invalid: errors.has('code') }"
         />
-        <img ref="code" src="/api/user/passport/code" alt="code" @click="changeCode" />
-        <span class="error-msg">{{ errors.first('code') }}</span>
+        <img
+          ref="code"
+          src="/api/user/passport/code"
+          alt="code"
+          @click="changeCode"
+        />
+        <span class="error-msg">{{ errors.first("code") }}</span>
       </div>
       <div class="content">
         <label>登录密码:</label>
@@ -43,33 +48,33 @@
           placeholder="请输入你的密码"
           type="text"
           name="password"
-          v-validate="{required: true,regex: /^\w{6,10}$/}"
-          :class="{invalid: errors.has('password')}"
+          v-validate="{ required: true, regex: /^\w{6,10}$/ }"
+          :class="{ invalid: errors.has('password') }"
         />
-        <span class="error-msg">{{ errors.first('password') }}</span>
+        <span class="error-msg">{{ errors.first("password") }}</span>
       </div>
       <div class="content">
         <label>确认密码:</label>
-         <input
+        <input
           v-model="password2"
           placeholder="请再次输入密码"
           type="text"
           name="password2"
-          v-validate="{required: true,regex: /^\w{6,10}$/,is:(password)}"
-          :class="{invalid: errors.has('password2')}"
+          v-validate="{ required: true, regex: /^\w{6,10}$/, is: password }"
+          :class="{ invalid: errors.has('password2') }"
         />
-        <span class="error-msg">{{ errors.first('password2') }}</span>
+        <span class="error-msg">{{ errors.first("password2") }}</span>
       </div>
       <div class="controls">
         <input
           name="isCheck"
           type="checkbox"
           v-model="isCheck"
-          v-validate="{agree:true}"
-          :class="{invalid: errors.has('isCheck')}"
+          v-validate="{ agree: true }"
+          :class="{ invalid: errors.has('isCheck') }"
         />
         <span>同意协议并注册《尚品汇用户协议》</span>
-        <span class="error-msg">{{ errors.first('isCheck') }}</span>
+        <span class="error-msg">{{ errors.first("isCheck") }}</span>
       </div>
       <div class="btn">
         <button @click="register">完成注册</button>
@@ -103,6 +108,7 @@ export default {
       password: "",
       password2: "",
       code: "",
+      isCheck: "",
     };
   },
   methods: {

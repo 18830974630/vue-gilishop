@@ -25,6 +25,8 @@ const PaySuccess = () => import('@/pages/PaySuccess')
 const Center = () => import('@/pages/Center')
 const GroupOrder = () => import('@/pages/Center/GroupOrder')
 const MyOrder = () => import('@/pages/Center/MyOrder')
+
+import store from '@/store'
 export default [
     {
         path: '/center',

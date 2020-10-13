@@ -90,6 +90,7 @@ export default {
       let target = event.target; //代表目标元素  目标元素有可能是a 也有可能不是a
       let data = target.dataset; //dataset 拿的就是元素身上以data-开头的所有的属性和值组成的一个对象 里面的属性都改为了小写
       // console.log(data)
+      // let {target:{data}} = event
 
       let { categoryname, category1id, category2id, category3id } = data;
 

@@ -11,7 +11,7 @@
         <div class="cart-th6">操作</div>
       </div>
       <div class="cart-body">
-        <ul class="cart-list" v-for="cart in  shopCartList" :key="cart.id">
+        <ul class="cart-list" v-for="cart in shopCartList" :key="cart.id">
           <li class="cart-list-con1">
             <input
               type="checkbox"
@@ -22,25 +22,35 @@
           </li>
           <li class="cart-list-con2">
             <img :src="cart.imgUrl" />
-            <div class="item-msg">{{cart.skuId}}</div>
+            <div class="item-msg">{{ cart.skuId }}</div>
           </li>
           <li class="cart-list-con4">
-            <span class="price">{{cart.cartPrice}}</span>
+            <span class="price">{{ cart.cartPrice }}</span>
           </li>
           <li class="cart-list-con5">
-            <a href="javascript:void(0)" class="mins" @click="changeCartNum(cart,-1)">-</a>
+            <a
+              href="javascript:void(0)"
+              class="mins"
+              @click="changeCartNum(cart, -1)"
+              >-</a
+            >
             <input
               autocomplete="off"
               type="text"
               :value="cart.skuNum"
               minnum="1"
               class="itxt"
-              @change="changeCartNum(cart,$event.target.value*1)"
+              @change="changeCartNum(cart, $event.target.value * 1)"
             />
-            <a href="javascript:void(0)" class="plus" @click="changeCartNum(cart,1)">+</a>
+            <a
+              href="javascript:void(0)"
+              class="plus"
+              @click="changeCartNum(cart, 1)"
+              >+</a
+            >
           </li>
           <li class="cart-list-con6">
-            <span class="sum">{{cart.cartPrice * cart.skuNum}}</span>
+            <span class="sum">{{ cart.cartPrice * cart.skuNum }}</span>
           </li>
           <li class="cart-list-con7">
             <a href="#none" class="sindelet" @click="deleteCart(cart)">删除</a>
@@ -63,11 +73,12 @@
       <div class="money-box">
         <div class="chosed">
           已选择
-          <span>{{checkedNum}}</span>件商品
+          <span>{{ checkedNum }}</span
+          >件商品
         </div>
         <div class="sumprice">
           <em>总价（不含运费） ：</em>
-          <i class="summoney">{{allMoney}}</i>
+          <i class="summoney">{{ allMoney }}</i>
         </div>
         <div class="sumbtn">
           <router-link to="/trade" class="sum-btn">结算</router-link>
