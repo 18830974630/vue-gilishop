@@ -1,10 +1,17 @@
-import { reqGoodsListInfo } from '@/api'
+import { reqGoodsListInfo, reqLogin } from '@/api'
 const state = {
-    goodsListInfo: {}
+    goodsListInfo: {},
+
+
+    Login: {},
 }
 const mutations = {
     RECRIVEGOODSLISTINFO(state, goodsListInfo) {
         state.goodsListInfo = goodsListInfo
+    },
+
+    RECRIVELOGIN(state, Login) {
+        state.Login = Login
     }
 }
 const actions = {
@@ -14,7 +21,7 @@ const actions = {
             // console.log(222)
             commit('RECRIVEGOODSLISTINFO', result.data)
         }
-    }
+    },
 }
 const getters = {
     attrsList(state) {

@@ -6,7 +6,7 @@
         <div class="loginform">
           <ul class="tab clearFix">
             <li>
-              <a href="##" style="border-right: 0;">扫描登录</a>
+              <a href="##" style="border-right: 0">扫描登录</a>
             </li>
             <li>
               <a href="##" class="current">账户登录</a>
@@ -17,11 +17,19 @@
             <form action="##">
               <div class="input-text clearFix">
                 <span></span>
-                <input type="text" placeholder="邮箱/用户名/手机号" v-model="mobile" />
+                <input
+                  type="text"
+                  placeholder="邮箱/用户名/手机号"
+                  v-model="phone"
+                />
               </div>
               <div class="input-text clearFix">
                 <span class="pwd"></span>
-                <input type="text" placeholder="请输入密码" v-model="password" />
+                <input
+                  type="text"
+                  placeholder="请输入密码"
+                  v-model="password"
+                />
               </div>
               <div class="setting clearFix">
                 <label class="checkbox inline">
@@ -30,7 +38,9 @@
                 </label>
                 <span class="forget">忘记密码？</span>
               </div>
-              <button class="btn" @click.prevent="login">登&nbsp;&nbsp;录</button>
+              <button class="btn" @click.prevent="login">
+                登&nbsp;&nbsp;录
+              </button>
             </form>
 
             <div class="call clearFix">
@@ -48,7 +58,9 @@
                   <img src="./images/weixin.png" alt />
                 </li>
               </ul>
-              <router-link class="register" to="/register">立即注册</router-link>
+              <router-link class="register" to="/register"
+                >立即注册</router-link
+              >
             </div>
           </div>
         </div>
@@ -73,6 +85,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "Login",
   // beforeRouteEnter(to, from, next) {
@@ -90,16 +103,21 @@ export default {
   // },
   data() {
     return {
-      mobile: "",
+      phone: "",
       password: "",
     };
   },
+  // computed: {
+  //   ...mapState({
+  //     mockLogin: (state) => state.user.mockLogin,
+  //   }),
+  // },
   methods: {
     async login() {
-      let { mobile, password } = this;
-      if (mobile && password) {
+      let { phone, password } = this;
+      if (phone && password) {
         try {
-          await this.$store.dispatch("userLogin", { mobile, password });
+          await this.$store.dispatch("userLogin", { phone, password });
           alert("登陆成功");
           let redirect = this.$route.query.redirect;
           if (redirect) {
@@ -111,6 +129,7 @@ export default {
           alert("登陆失败" + error.message);
         }
       }
+      // this.$store.dispatch("getLogin");
     },
   },
 };

@@ -15,6 +15,7 @@ instance.interceptors.request.use(function (config) {
     let token = store.state.user.userInfo.token
     if (token) {
         config.headers.token = token
+        // config.headers.token = '90aa16f24d04c7d882051412f9ec45b'
     }
     return config;
 });

@@ -12,39 +12,49 @@
           </ul>
           <ul class="fl sui-tag">
             <li class="with-x" v-show="searchParams.categoryName">
-              {{searchParams.categoryName}}
+              {{ searchParams.categoryName }}
               <i @click="removeCategoryName">×</i>
             </li>
             <li class="with-x" v-show="searchParams.keyword">
-              {{searchParams.keyword}}
+              {{ searchParams.keyword }}
               <i @click="removeKeyword">×</i>
             </li>
             <li class="with-x" v-if="searchParams.trademark">
-              {{searchParams.trademark.split(':')[1]}}
+              {{ searchParams.trademark.split(":")[1] }}
               <i @click="removeTrademark">×</i>
             </li>
-            <li class="with-x" v-for="(porp, index) in searchParams.props" :key="index">
-              {{porp.split(':')[1]}}
+            <li
+              class="with-x"
+              v-for="(porp, index) in searchParams.props"
+              :key="index"
+            >
+              {{ porp.split(":")[1] }}
               <i @click="removeProp(index)">×</i>
             </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector @searchForTrademark="searchForTrademark" @searchForProps="searchForProps"></SearchSelector>
+        <SearchSelector
+          @searchForTrademark="searchForTrademark"
+          @searchForProps="searchForProps"
+        ></SearchSelector>
 
         <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active" :class="{active:sortFlag === '1'}">
+                <li class="active" :class="{ active: sortFlag === '1' }">
                   <a href="javascript:;" @click="sortGoods('1')">
                     综合
                     <i
                       v-if="sortFlag === '1'"
                       class="iconfont"
-                      :class="{iconup:sortType==='asc',iconDown:sortType==='desc'}"
+                      :class="{
+                        iconup: sortType === 'asc',
+                        iconDown: sortType === 'desc',
+                      }"
                     ></i>
                   </a>
                 </li>
@@ -57,13 +67,16 @@
                 <li>
                   <a href="#">评价</a>
                 </li>
-                <li :class="{active:sortFlag === '2'}">
+                <li :class="{ active: sortFlag === '2' }">
                   <a href="javascript:;" @click="sortGoods('2')">
                     价格
                     <i
                       v-if="sortFlag === '2'"
                       class="iconfont"
-                      :class="{iconup:sortType==='asc',iconDown:sortType==='desc'}"
+                      :class="{
+                        iconup: sortType === 'asc',
+                        iconDown: sortType === 'desc',
+                      }"
                     ></i>
                   </a>
                 </li>
@@ -72,26 +85,29 @@
           </div>
           <div class="goods-list">
             <ul class="yui3-g">
-              <li class="yui3-u-1-5" v-for="(goods) in goodsList" :key="goods.id">
+              <li class="yui3-u-1-5" v-for="goods in goodsList" :key="goods.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <router-link :to="'/detail/'+goods.id">
+                    <router-link :to="'/detail/' + goods.id">
                       <img :src="goods.defaultImg" />
                     </router-link>
                   </div>
                   <div class="price">
                     <strong>
                       <em>¥ </em>
-                      <i>{{goods.price}}</i>
+                      <i>{{ goods.price }}</i>
                     </strong>
                   </div>
                   <div class="attr">
-                    <router-link :to="'/detail/'+goods.id">{{goods.title}}</router-link>
+                    <router-link :to="'/detail/' + goods.id">{{
+                      goods.title
+                    }}</router-link>
                   </div>
                   <div class="commit">
                     <i class="command">
                       已有
-                      <span>{{goods.hotScore}}</span>人评价
+                      <span>{{ goods.hotScore }}</span
+                      >人评价
                     </i>
                   </div>
                   <div class="operate">
@@ -99,8 +115,11 @@
                       href="success-cart.html"
                       target="_blank"
                       class="sui-btn btn-bordered btn-danger"
-                    >加入购物车</a>
-                    <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
+                      >加入购物车</a
+                    >
+                    <a href="javascript:void(0);" class="sui-btn btn-bordered"
+                      >收藏</a
+                    >
                   </div>
                 </div>
               </li>
@@ -153,6 +172,7 @@ export default {
   },
   mounted() {
     this.getGoodsListInfo();
+    this.getLogin();
   },
   methods: {
     getGoodsListInfo() {
@@ -247,6 +267,15 @@ export default {
       this.searchParams.pageNo = page;
       this.getGoodsListInfo();
     },
+
+
+
+
+
+
+    // getLogin(){
+    //   this.$store.dispatch('getLogin')
+    // }
   },
   components: {
     SearchSelector,
@@ -262,6 +291,12 @@ export default {
     sortType() {
       return this.searchParams.order.split(":")[1];
     },
+
+
+    // 模拟登陆
+    // ...mapState({
+    //   Login:(state)=>state.search.Login
+    // })
   },
   watch: {
     $route: {

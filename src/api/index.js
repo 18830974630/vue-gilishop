@@ -22,6 +22,13 @@ export const reqFloorList = () => {
         method: 'get',
     })
 }
+export const reqLogin = () => {
+    return mockAjak({
+        url: '/login',
+        method: 'get'
+    })
+}
+
 //请求获取search的商品列表数据
 export const reqGoodsListInfo = (searchParams) => {
     return Ajax({
@@ -138,3 +145,6 @@ export const reqOrderInfo = (page, limit) => {
         method: "get"
     })
 }
+
+
+
